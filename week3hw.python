@@ -1,0 +1,180 @@
+#!/usr/bin/python
+
+##CEBD1160 week3 homework by Zele Yu
+
+###Basic:
+##1.check the type of the following values 
+i = 1
+type(i)
+##<class 'int'>
+i = 3.14
+type(i)
+##<class 'float'>
+i = "Big Data!"
+type(i)
+##<class 'str'>
+i = 'Big Data!'
+type(i)
+##<class 'str'>
+i=True
+type(i)
+##<class 'bool'>
+i=False
+type(i)
+##<class 'bool'>
+i = [1,2,"intruder",3]
+type(i)
+##<class 'list'>
+
+
+##2.write a script that prints the integers from 1 to 100
+a = 0
+
+for i in range(0,100):
+ a = a+1
+ print(a)
+ if a%3 == 0 and a%5 == 0:
+   print("FizzBuzz")
+ elif a%5 == 0:
+   print("Buzz")
+ elif a%3 == 0:
+   print("Fizz")
+
+##3.find the max or min integer value in a list.
+samplelist = [1,19,23,87,5,43,55]
+max_value = max(somelist)
+print(max_value)
+min_value = min(somelist)
+print(min_value)
+## find the sum of all the multiples of 3 or 5 below 1000
+a=0
+sum=0
+
+for i in range(0,1000):
+    a = a+1
+    if a%3 == 0 or a%5 == 0:
+        sum = sum + a
+
+print(sum)
+
+##4.take out all the vowels and response with shortened version of the string
+string = input("Enter a string: ").lower()
+vowels = 'aeiou'
+
+for char in string:
+    if char in vowels:
+        string = string.replace(char,'')
+
+print(string)
+
+
+###Advanced:
+##1.count the number of characters (character frequency) in a string
+inputstr = input("Enter a string: ")
+
+## use dictionary to do the count
+d = {}
+
+for char in inputstr:
+    d[char] = d.get(char,0) + 1
+
+sd = sorted(d.items())
+
+print("Character frequency :\n" + str(sd))
+
+##2.count the occurrences of each word in a given sentence.
+sentence = input("Enter a sentence: ").split(" ")
+
+dw = {}
+
+for word in sentence:
+    dw[word] = dw.get(word,0) + 1
+
+print("Word frequency :\n" + str(dw))
+
+##3.accepts a comma separated sequence of words as input and prints the unique words in sorted form
+s = input("Enter a comma separated squence of words: ").split(',')
+
+dc = {}
+
+for word in s:
+    dc[word] = dc.get(word,0) + 1
+
+sdc = sorted(dc.items())
+
+for k,v in sdc :
+    if v == 1:
+        print(k)
+
+###Reach:
+##1.read two list of numbers (4 items minimum) and merge them by sorting them without duplicates
+list1 = input("Enter the first list of numbers, minimum 4 items, seperated by commas: ").split(',')
+list2 = input("Enter the second list of numbers, minimum 4 items, seperated by commas: ").split(',')
+
+if (len(list1) < 4) or (len(list2) < 4):
+    print("Wrong list, please reenter")
+
+l1 = []
+l2 = []
+
+for el in list1:
+    l1.append(int(el))
+
+for ell in list2:
+    l2.append(int(ell))
+
+l = l1 + l2
+
+l.sort()
+    
+l = set(l)
+
+print(l)
+
+##2.ignore the number that can be a linear combination of any other two numbers in the list
+list1 = input("Enter the first list of numbers, minimum 4 items, seperated by commas: ").split(',')
+list2 = input("Enter the second list of numbers, minimum 4 items, seperated by commas: ").split(',')
+
+if (len(list1) < 4) or (len(list2) < 4):
+    print("Wrong list, please reenter")
+
+l1 = []
+l2 = []
+
+for el in list1:
+    l1.append(int(el))
+
+for ell in list2:
+    l2.append(int(ell))
+
+l = l1 + l2
+
+l.sort()
+    
+l = set(l)
+ll = list(l)
+
+lc = ll
+
+lre = []
+
+def linc(x,y,z):
+    nx = z//x + 1
+    ny = z//y + 1
+    for i in range(1,nx):
+        for j in range(1,ny):
+            if (i*x + j*y == z):
+                return True
+    return False
+
+
+for z in ll:
+    for x in ll:
+        for y in ll:
+            if linc(x,y,z):
+                lre.append(z)
+
+for p in lre:
+    lc.remove(p)
+
+
